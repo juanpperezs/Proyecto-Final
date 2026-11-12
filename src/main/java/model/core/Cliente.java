@@ -38,4 +38,3 @@ public class Cliente {
         this.tipoCliente = tipoCliente;
     }
 }
-
