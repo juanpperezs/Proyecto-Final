@@ -53,20 +53,20 @@ public class Main {
                     Cliente clienteVenta = null;
 
                     for (Cliente cliente : cinemaPrincipal.getListaClientes()) {
-                        if(cliente.getIdentificacionCliente().equalsIgnoreCase(idCliente)) {
+                        if (cliente.getIdentificacionCliente().equalsIgnoreCase(idCliente)) {
                             clienteVenta = cliente;
                         }
-
-                    System.out.print("Código de la función: ");
-
-                    String codFuncion = entradaTeclado.nextLine();
-                    Funcion funcionVenta = null;
-
-                    for (Funcion funcion : cinemaPrincipal.getListaFunciones()) {
-                        if(funcion.getCodigoFuncion().equalsIgnoreCase(codFuncion)) {
-                            funcionVenta = funcion;
-                        }
                     }
+                        System.out.print("Código de la función: ");
+
+                        String codFuncion = entradaTeclado.nextLine();
+                        Funcion funcionVenta = null;
+
+                        for (Funcion funcion : cinemaPrincipal.getListaFunciones()) {
+                            if (funcion.getCodigoFuncion().equalsIgnoreCase(codFuncion)) {
+                                funcionVenta = funcion;
+                            }
+                        }
 
                     if(clienteVenta == null) {
                     System.out.println("El cliente no está registrado.");
@@ -74,27 +74,27 @@ public class Main {
                     }else if (funcionVenta == null) {
                     System.out.println("La función no existe.");
 
-                    }else{
-                    System.out.println("Película: " + funcionVenta.getPelicula().getNombrePelicula() + " | Sala: " + funcionVenta.getSala().getNombreONumero() + " | Hora: " + funcionVenta.getHora());
-                            System.out.println("Asientos disponibles:");
+                    }else {
+                        System.out.println("Película: " + funcionVenta.getPelicula().getNombrePelicula() + " | Sala: " + funcionVenta.getSala().getNombreONumero() + " | Hora: " + funcionVenta.getHora());
+                        System.out.println("Asientos disponibles:");
 
-                    for (Asiento asiento : funcionVenta.getSala().getListaAsientos()) {
-                        if(asiento.getEstado() == EstadoAsiento.DISPONIBLE) {
-                            System.out.println(asiento.getCodigoAsiento() + " ");
+                        for (Asiento asiento : funcionVenta.getSala().getListaAsientos()) {
+                            if (asiento.getEstado() == EstadoAsiento.DISPONIBLE) {
+                                System.out.println(asiento.getCodigoAsiento() + " ");
+                            }
                         }
-                    }
-                    System.out.println(" ");
+                        System.out.println(" ");
 
-                    System.out.print("Código del asiento: ");
-                    String codAsiento = entradaTeclado.nextLine();
+                        System.out.print("Código del asiento: ");
+                        String codAsiento = entradaTeclado.nextLine();
 
-                    Asiento asientoVenta = null;
+                        Asiento asientoVenta = null;
 
-                    for (Asiento asiento : funcionVenta.getSala().getListaAsientos()) {
-                        if(asiento.getCodigoAsiento().equalsIgnoreCase(codAsiento)) {
-                            asientoVenta = asiento;
+                        for (Asiento asiento : funcionVenta.getSala().getListaAsientos()) {
+                            if (asiento.getCodigoAsiento().equalsIgnoreCase(codAsiento)) {
+                                asientoVenta = asiento;
+                            }
                         }
-                    }
 
                         if (asientoVenta == null) {
                             System.out.println("Ese asiento no existe en la sala.");
@@ -102,10 +102,25 @@ public class Main {
                             String codigoVenta = "V-" + (cinemaPrincipal.getListaVentas().size() + 1);
                             Venta venta = new Venta(codigoVenta, clienteVenta, funcionVenta,
                                     asientoVenta, LocalDateTime.now(), 0, EstadoVenta.ACTIVA);
-
+                        }
+                    }
                     break;
                 case 2:
+
+                    System.out.println("----- CANCELAR VENTA -----");
+
+                    System.out.print("Código de la venta: ");
+                    String codVentaCancelar = entradaTeclado.nextLine();
+
+                    boolean ventaCancelada = true;
+
+                //Faltan las excepciones
+
+                    if (ventaCancelada) {
+                        System.out.println("Venta " + codVentaCancelar + " cancelada. El asiento quedó disponible.");
+                    }
                     break;
+
                 case 3:
                     break;
                 case 4:
