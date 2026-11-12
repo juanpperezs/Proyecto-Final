@@ -59,6 +59,18 @@ public class Sala {
         this.listaAsientos = listaAsientos;
     }
 
+    public void generarAsientos(){
+        listaAsientos.clear();
+        int asientosPorFila = 5;
+        for (int i = 0; i < capacidad; i++) {
+            char letraFila = (char) ('A' + (i / asientosPorFila));
+            String fila = String.valueOf(letraFila);
+            int numero = (i % asientosPorFila) + 1;
+            String codigoAsiento = fila + numero;
+            listaAsientos.add(new Asiento (codigoAsiento, fila, numero));
+        }
+    }
+
     @Override
     public String toString() {
         return "Sala{" +
