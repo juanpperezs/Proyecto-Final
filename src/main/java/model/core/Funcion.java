@@ -76,5 +76,4 @@ public class Funcion {
         this.estado = estado;
     }
 
-
 }
