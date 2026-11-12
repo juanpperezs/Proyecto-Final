@@ -16,7 +16,7 @@ public class AsientoTest {
 
     @Test
     void verificarDatosInicialesDelAsiento() {
-        assertEquals("A1", asientoDePrueba.getCodigo());
+        assertEquals("A1", asientoDePrueba.getCodigoAsiento());
         assertEquals("A", asientoDePrueba.getFila());
         assertEquals(1, asientoDePrueba.getNumero());
         assertEquals(EstadoAsiento.DISPONIBLE, asientoDePrueba.getEstado());

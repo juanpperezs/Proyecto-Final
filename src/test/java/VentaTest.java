@@ -13,6 +13,9 @@ import model.espacios.Sala;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +41,8 @@ public class VentaTest {
                 "FUNC-02",
                 peliculaDePrueba,
                 salaDePrueba,
-                "2026-11-16",
-                "18:30",
+                LocalDate.of(2026,11,16),
+                LocalTime.of(18,30),
                 10000.0,
                 EstadoFuncion.PROGRAMADA
         );
@@ -53,16 +56,16 @@ public class VentaTest {
                 clienteDePrueba,
                 funcionDePrueba,
                 asientoDePrueba,
-                "2026-11-12 09:30",
+                LocalDateTime.of(2026,11,16,18,30),
                 10000.0,
                 EstadoVenta.ACTIVA
         );
 
-        assertEquals("VENTA-00", ventaDePrueba.getCodigo());
+        assertEquals("VENTA-00", ventaDePrueba.getCodigoVenta());
         assertEquals(clienteDePrueba, ventaDePrueba.getCliente());
         assertEquals(funcionDePrueba, ventaDePrueba.getFuncion());
         assertEquals(asientoDePrueba, ventaDePrueba.getAsiento());
-        assertEquals("2026-11-12 09:30", ventaDePrueba.getFechaYHora());
+        assertEquals(LocalDateTime.of(2026,11,16,18,30), ventaDePrueba.getFechaYHora());
         assertEquals(10000.0, ventaDePrueba.getValorPagado());
         assertEquals(EstadoVenta.ACTIVA, ventaDePrueba.getEstadoVenta());
     }
@@ -75,7 +78,7 @@ public class VentaTest {
                 clienteTipoGeneral,
                 funcionDePrueba,
                 asientoDePrueba,
-                "2026-11-12 10:00",
+                LocalDateTime.of(2026,11,16,18,30),
                 0.0,
                 EstadoVenta.ACTIVA
         );
@@ -94,7 +97,7 @@ public class VentaTest {
                 clienteTipoEstudiante,
                 funcionDePrueba,
                 asientoDePrueba,
-                "2026-11-12 10:05",
+                LocalDateTime.of(2026,11,16,18,30),
                 0.0,
                 EstadoVenta.ACTIVA
         );
@@ -113,7 +116,7 @@ public class VentaTest {
                 clienteTipoNino,
                 funcionDePrueba,
                 asientoDePrueba,
-                "2026-11-12 10:10",
+                LocalDateTime.of(2026,11,16,18,30),
                 0.0,
                 EstadoVenta.ACTIVA
         );
@@ -132,7 +135,7 @@ public class VentaTest {
                 clienteTipoAdultoMayor,
                 funcionDePrueba,
                 asientoDePrueba,
-                "2026-11-12 10:15",
+                LocalDateTime.of(2026,11,16,18,30),
                 0.0,
                 EstadoVenta.ACTIVA
         );
@@ -153,7 +156,7 @@ public class VentaTest {
                 clienteTipoGeneral,
                 funcionDePrueba,
                 asientoDePrueba,
-                "2026-11-12 10:20",
+                LocalDateTime.of(2026,11,16,18,30),
                 10000.0,
                 EstadoVenta.ACTIVA
         );

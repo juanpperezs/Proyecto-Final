@@ -16,7 +16,7 @@ public class ClienteTest {
 
     @Test
     void verificarDatosInicialesDelCliente() {
-        assertEquals("1094888999", clienteDePrueba.getIdentificacion());
+        assertEquals("1094888999", clienteDePrueba.getIdentificacionCliente());
         assertEquals("Camila Restrepo", clienteDePrueba.getNombre());
         assertEquals(TipoCliente.ESTUDIANTE, clienteDePrueba.getTipoCliente());
     }

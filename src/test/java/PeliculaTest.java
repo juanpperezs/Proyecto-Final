@@ -17,8 +17,8 @@ public class PeliculaTest {
 
     @Test
     void verificarDatosInicialesDeLaPelicula() {
-        assertEquals("PEL-01", peliculaDePrueba.getCodigo());
-        assertEquals("Interestelar", peliculaDePrueba.getNombre());
+        assertEquals("PEL-01", peliculaDePrueba.getCodigoPelicula());
+        assertEquals("Interestelar", peliculaDePrueba.getNombrePelicula());
         assertEquals("Ciencia Ficcion", peliculaDePrueba.getGenero());
         assertEquals(169, peliculaDePrueba.getDuracionMinutos());
         assertEquals(Clasificacion.MAYORES_12, peliculaDePrueba.getClasificacion());
