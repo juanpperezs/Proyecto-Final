@@ -60,4 +60,8 @@ public class Asiento {
     public void liberarAsiento() {
         this.estado = EstadoAsiento.DISPONIBLE;
     }
+
+    public void ocuparAsiento() {
+        this.estado = EstadoAsiento.OCUPADO;
+    }
 }

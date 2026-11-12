@@ -67,5 +67,4 @@ public class Cinema {
     public void setListaClientes(List<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
     }
-
 }

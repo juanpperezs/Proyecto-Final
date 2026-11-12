@@ -82,26 +82,24 @@ public class Funcion {
     }
 
 
-    public int cantidadAsientosDisponibles() {
-        int disponibles = 0;
-
-        for (Asiento asiento : sala.getListaAsientos()) {
-            if (asiento.getEstado() == EstadoAsiento.DISPONIBLE) {
-                disponibles++;
+    public int getCantidadAsientosDisponibles() {
+        int cantidadAsientosDisponibles = 0;
+        for (Asiento asientoActual : sala.getListaAsientos()) {
+            if (asientoActual.getEstado() == EstadoAsiento.DISPONIBLE) {
+                cantidadAsientosDisponibles++;
             }
         }
-        return disponibles;
+        return cantidadAsientosDisponibles;
     }
 
-    public int cantidadAsientosOcupados() {
-        int ocupados = 0;
-
-        for (Asiento asiento : sala.getListaAsientos()) {
-            if (asiento.getEstado() == EstadoAsiento.OCUPADO) {
-                ocupados++;
+    public int getCantidadAsientosOcupados() {
+        int cantidadAsientosOcupados = 0;
+        for (Asiento asientoActual : sala.getListaAsientos()) {
+            if (asientoActual.getEstado() == EstadoAsiento.OCUPADO) {
+                cantidadAsientosOcupados++;
             }
         }
-        return ocupados;
+        return cantidadAsientosOcupados;
     }
 }
 
