@@ -5,18 +5,21 @@ import model.enums.EstadoFuncion;
 import model.espacios.Asiento;
 import model.espacios.Sala;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Funcion {
 
-    private String codigo;
+    private String codigoFuncion;
     private Pelicula pelicula;
     private Sala sala;
-    private String fecha;
-    private String hora;
+    private LocalDate fecha;
+    private LocalTime hora;
     private double valorBase;
     private EstadoFuncion estado;
 
-    public Funcion(String codigo, Pelicula pelicula, Sala sala, String fecha, String hora, double valorBase, EstadoFuncion estado) {
-        this.codigo = codigo;
+    public Funcion(String codigoFuncion, Pelicula pelicula, Sala sala, LocalDate fecha, LocalTime hora, double valorBase, EstadoFuncion estado) {
+        this.codigoFuncion = codigoFuncion;
         this.pelicula = pelicula;
         this.sala = sala;
         this.fecha = fecha;
@@ -25,12 +28,12 @@ public class Funcion {
         this.estado = estado;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCodigoFuncion() {
+        return codigoFuncion;
     }
 
     public void setCodigo(String codigo) {
-        this.codigo = codigo;
+        this.codigoFuncion = codigo;
     }
 
     public Pelicula getPelicula() {
@@ -49,19 +52,19 @@ public class Funcion {
         this.sala = sala;
     }
 
-    public String getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public String getHora() {
+    public LocalTime getHora() {
         return hora;
     }
 
-    public void setHora(String hora) {
+    public void setHora(LocalTime hora) {
         this.hora = hora;
     }
 
@@ -102,6 +105,3 @@ public class Funcion {
         return cantidadAsientosOcupados;
     }
 }
-
-
-

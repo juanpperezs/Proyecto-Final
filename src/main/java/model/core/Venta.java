@@ -4,17 +4,19 @@ import model.enums.EstadoVenta;
 import model.espacios.Asiento;
 import model.enums.TipoCliente;
 
+import java.time.LocalDateTime;
+
 public class Venta {
-    private String codigo;
+    private String codigoVenta;
     private Cliente cliente;
     private Funcion funcion;
     private Asiento asiento;
-    private String fechaYHora;
+    private LocalDateTime fechaYHora;
     private double valorPagado;
     private EstadoVenta estadoVenta;
 
-    public Venta(String codigo, Cliente cliente, Funcion funcion, Asiento asiento, String fechaYHora, double valorPagado, EstadoVenta estadoVenta) {
-        this.codigo = codigo;
+    public Venta(String codigo, Cliente cliente, Funcion funcion, Asiento asiento, LocalDateTime fechaYHora, double valorPagado, EstadoVenta estadoVenta) {
+        this.codigoVenta = codigo;
         this.cliente = cliente;
         this.funcion = funcion;
         this.asiento = asiento;
@@ -23,11 +25,11 @@ public class Venta {
         this.estadoVenta = estadoVenta;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCodigoVenta() {
+        return codigoVenta;
     }
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoVenta(String codigoVenta) {
+        this.codigoVenta = codigoVenta;
     }
 
     public Cliente getCliente() {
@@ -51,10 +53,10 @@ public class Venta {
         this.asiento = asiento;
     }
 
-    public String getFechaYHora() {
+    public LocalDateTime getFechaYHora() {
         return fechaYHora;
     }
-    public void setFechaYHora(String fechaYHora) {
+    public void setFechaYHora(LocalDateTime fechaYHora) {
         this.fechaYHora = fechaYHora;
     }
 
@@ -71,15 +73,20 @@ public class Venta {
     public void setEstadoVenta(EstadoVenta estadoVenta) {
         this.estadoVenta = estadoVenta;
     }
+
     public double calcularValorPagado() {
         double base = funcion.getValorBase();
         TipoCliente tipo = cliente.getTipoCliente();
-        double descuento = switch (tipo) {
-            case ESTUDIANTE -> 0.20;
-            case NINO -> 0.30;
-            case ADULTO_MAYOR -> 0.25;
-            case GENERAL -> 0.0;
-        };
+        double descuento = 0.0;
+        if (tipo == TipoCliente.ESTUDIANTE) {
+            descuento = 0.20;
+        } else if (tipo == TipoCliente.NINO) {
+            descuento = 0.30;
+        } else if (tipo == TipoCliente.ADULTO_MAYOR) {
+            descuento = 0.25;
+        } else {
+            descuento = 0.0;
+        }
         this.valorPagado = base * (1.0 - descuento);
         return this.valorPagado;
     }
@@ -94,11 +101,11 @@ public class Venta {
     @Override
     public String toString() {
         return "Venta{" +
-                "codigo='" + codigo + '\'' +
+                "codigoVenta='" + codigoVenta + '\'' +
                 ", cliente=" + cliente.getNombre() +
-                ", pelicula=" + funcion.getPelicula().getNombre() +
-                ", funcion=" + funcion.getCodigo() +
-                ", asiento=" + asiento.getCodigo() +
+                ", pelicula=" + funcion.getPelicula().getNombrePelicula() +
+                ", funcion=" + funcion.getCodigoFuncion() +
+                ", asiento=" + asiento.getCodigoAsiento() +
                 ", fechaYHora='" + fechaYHora + '\'' +
                 ", valorPagado=" + valorPagado +
                 ", estadoVenta=" + estadoVenta +

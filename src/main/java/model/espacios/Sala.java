@@ -1,5 +1,6 @@
 package model.espacios;
 
+import model.enums.EstadoAsiento;
 import model.enums.EstadoSala;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +12,12 @@ public class Sala {
     private EstadoSala estado;
     private List<Asiento> listaAsientos;
 
-    public Sala(String codigo, String nombreONumero, int capacidad, EstadoSala estado, List<Asiento> listaAsientos) {
+    public Sala(String codigo, String nombreONumero, int capacidad, EstadoSala estado) {
         this.codigo = codigo;
         this.nombreONumero = nombreONumero;
         this.capacidad = capacidad;
         this.estado = estado;
-        this.listaAsientos = listaAsientos;
+        this.listaAsientos = new  ArrayList<>();
     }
 
     public Sala(String codigo, String nombreONumero, int capacidad) {
@@ -25,7 +26,18 @@ public class Sala {
         this.capacidad = capacidad;
         this.estado = EstadoSala.DISPONIBLE;
         this.listaAsientos = new ArrayList<>();
-        generarAsientos();
+    }
+
+    public Sala(String codigo, String nombreONumero, int capacidad, EstadoSala estado, List<Asiento> listaAsientos) {
+        this.codigo = codigo;
+        this.nombreONumero = nombreONumero;
+        this.capacidad = capacidad;
+        this.estado = estado;
+        if (listaAsientos == null) {
+            this.listaAsientos = new  ArrayList<>();
+        } else  {
+            this.listaAsientos = listaAsientos;
+        }
     }
 
     public String getCodigo() {
@@ -78,6 +90,35 @@ public class Sala {
             String codigoAsiento = fila + numero;
             listaAsientos.add(new Asiento (codigoAsiento, fila, numero));
         }
+    }
+
+    public Asiento buscarAsientoPorCodigo(String codigoAsiento) {
+        for (Asiento asiento : listaAsientos) {
+            if (asiento.getCodigoAsiento().equals(codigoAsiento)) {
+                return asiento;
+            }
+        }
+        return null;
+    }
+
+    public int contarAsientosOcupados(){
+        int contadorAsientosOcupados = 0;
+        for (Asiento asiento : listaAsientos) {
+            if (asiento.getEstado()== EstadoAsiento.OCUPADO){
+                contadorAsientosOcupados++;
+            }
+        }
+        return contadorAsientosOcupados;
+    }
+
+    public int contarAsientosDisponibles(){
+        int contadorAsientosDisponibles = 0;
+        for (Asiento asiento : listaAsientos) {
+            if (asiento.getEstado()== EstadoAsiento.DISPONIBLE){
+                contadorAsientosDisponibles++;
+            }
+        }
+        return contadorAsientosDisponibles;
     }
 
     @Override

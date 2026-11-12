@@ -4,36 +4,36 @@ import model.enums.Clasificacion;
 import model.enums.EstadoPelicula;
 
 public class Pelicula {
-    private String codigo;
-    private String nombre;
+    private String codigoPelicula;
+    private String nombrePelicula;
     private String genero;
     private int duracionMinutos;
     private Clasificacion clasificacion;
     private EstadoPelicula estado;
 
     public Pelicula(String codigo, String nombre, String genero, int duracionMinutos, Clasificacion clasificacion) {
-        this.codigo = codigo;
-        this.nombre = nombre;
+        this.codigoPelicula = codigo;
+        this.nombrePelicula = nombre;
         this.genero = genero;
         this.duracionMinutos = duracionMinutos;
         this.clasificacion = clasificacion;
         this.estado = EstadoPelicula.DISPONIBLE;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCodigoPelicula() {
+        return codigoPelicula;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoPelicula(String codigoPelicula) {
+        this.codigoPelicula = codigoPelicula;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombrePelicula() {
+        return nombrePelicula;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombrePelicula(String nombrePelicula) {
+        this.nombrePelicula = nombrePelicula;
     }
 
     public String getGenero() {
@@ -71,8 +71,8 @@ public class Pelicula {
     @Override
     public String toString() {
         return "Pelicula{" +
-                "codigo='" + codigo + '\'' +
-                ", nombre='" + nombre + '\'' +
+                "codigoPelicula='" + codigoPelicula + '\'' +
+                ", nombrePelicula='" + nombrePelicula + '\'' +
                 ", genero='" + genero + '\'' +
                 ", duracionMinutos=" + duracionMinutos +
                 ", clasificacion=" + clasificacion +

@@ -3,24 +3,24 @@ package model.espacios;
 import model.enums.EstadoAsiento;
 
 public class Asiento {
-    private String codigo;
+    private String codigoAsiento;
     private String fila;
     private int numero;
     private EstadoAsiento estado;
 
     public Asiento(String codigo, String fila, int numero) {
-        this.codigo = codigo;
+        this.codigoAsiento = codigo;
         this.fila = fila;
         this.numero = numero;
         this.estado = EstadoAsiento.DISPONIBLE;
     }
 
-    public String getCodigo() {
-        return codigo;
+    public String getCodigoAsiento() {
+        return codigoAsiento;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setCodigoAsiento(String codigoAsiento) {
+        this.codigoAsiento = codigoAsiento;
     }
 
     public String getFila() {
@@ -50,7 +50,7 @@ public class Asiento {
     @Override
     public String toString() {
         return "Asiento{" +
-                "codigo='" + codigo + '\'' +
+                "codigoAsiento='" + codigoAsiento + '\'' +
                 ", fila='" + fila + '\'' +
                 ", numero=" + numero +
                 ", estado=" + estado +
@@ -64,4 +64,5 @@ public class Asiento {
     public void ocuparAsiento() {
         this.estado = EstadoAsiento.OCUPADO;
     }
+
 }

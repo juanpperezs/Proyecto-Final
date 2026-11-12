@@ -3,22 +3,22 @@ package model.core;
 import model.enums.TipoCliente;
 
 public class Cliente {
-    private String identificacion;
+    private String identificacionCliente;
     private String nombre;
     private TipoCliente tipoCliente;
 
     public Cliente(String identificacion, String nombre, TipoCliente tipoCliente) {
-        this.identificacion = identificacion;
+        this.identificacionCliente = identificacion;
         this.nombre = nombre;
         this.tipoCliente = tipoCliente;
     }
 
-    public String getIdentificacion() {
-        return identificacion;
+    public String getIdentificacionCliente() {
+        return identificacionCliente;
     }
 
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
+    public void setIdentificacionCliente(String identificacionCliente) {
+        this.identificacionCliente = identificacionCliente;
     }
 
     public String getNombre() {
@@ -40,7 +40,7 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "identificacion='" + identificacion + '\'' +
+                "identificacionCliente='" + identificacionCliente + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", tipoCliente=" + tipoCliente +
                 '}';

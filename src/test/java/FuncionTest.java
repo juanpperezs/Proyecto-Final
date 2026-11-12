@@ -8,6 +8,8 @@ import model.espacios.Sala;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,16 +37,16 @@ public class FuncionTest {
 
         salaPrueba = new Sala("SALA-01", "Sala Principal", 3, EstadoSala.DISPONIBLE, listaAsientosSala);
         peliculaPrueba = new Pelicula("PEL-01", "Interestelar", "Ciencia Ficcion", 169, Clasificacion.TODOS);
-        funcionPrueba = new Funcion("FUNC-01", peliculaPrueba, salaPrueba, "2026-11-15", "20:00", 12000.0, EstadoFuncion.PROGRAMADA);
+        funcionPrueba = new Funcion("FUNC-01", peliculaPrueba, salaPrueba, LocalDate.of(2026,11,15), LocalTime.of(20,0), 12000.0, EstadoFuncion.PROGRAMADA);
     }
 
     @Test
     void verificarDatosInicialesDeLaFuncion() {
-        assertEquals("FUNC-01", funcionPrueba.getCodigo());
+        assertEquals("FUNC-01", funcionPrueba.getCodigoFuncion());
         assertEquals(peliculaPrueba, funcionPrueba.getPelicula());
         assertEquals(salaPrueba, funcionPrueba.getSala());
-        assertEquals("2026-11-15", funcionPrueba.getFecha());
-        assertEquals("20:00", funcionPrueba.getHora());
+        assertEquals(LocalDate.of(2026,11,15), funcionPrueba.getFecha());
+        assertEquals(LocalTime.of(20,0), funcionPrueba.getHora());
         assertEquals(12000.0, funcionPrueba.getValorBase());
         assertEquals(EstadoFuncion.PROGRAMADA, funcionPrueba.getEstado());
     }

@@ -28,7 +28,7 @@ public class SalaTest {
         assertEquals("S01", sala.getCodigo());
         assertEquals(EstadoSala.DISPONIBLE, sala.getEstado());
         assertEquals(2, sala.getListaAsientos().size());
-        assertEquals("A1", sala.getListaAsientos().get(0).getCodigo());
+        assertEquals("A1", sala.getListaAsientos().get(0).getCodigoAsiento());
     }
 
     @Test
