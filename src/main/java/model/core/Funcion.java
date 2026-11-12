@@ -81,7 +81,6 @@ public class Funcion {
         this.estado = estado;
     }
 
-
     public int getCantidadAsientosDisponibles() {
         int cantidadAsientosDisponibles = 0;
         for (Asiento asientoActual : sala.getListaAsientos()) {
@@ -102,6 +101,3 @@ public class Funcion {
         return cantidadAsientosOcupados;
     }
 }
-
-
-
