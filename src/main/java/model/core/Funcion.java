@@ -1,8 +1,6 @@
 package model.core;
 
-import model.enums.EstadoAsiento;
 import model.enums.EstadoFuncion;
-import model.espacios.Asiento;
 import model.espacios.Sala;
 
 public class Funcion {
@@ -81,27 +79,4 @@ public class Funcion {
         this.estado = estado;
     }
 
-
-    public int getCantidadAsientosDisponibles() {
-        int disponibles = 0;
-
-        for (Asiento asiento : sala.getListaAsientos()) {
-            if (asiento.getEstado() == EstadoAsiento.DISPONIBLE) {
-                disponibles++;
-            }
-        }
-        return disponibles;
-    }
-
-    public int getCantidadAsientosOcupados() {
-        int ocupados = 0;
-
-        for (Asiento asiento : sala.getListaAsientos()) {
-            if (asiento.getEstado() == EstadoAsiento.OCUPADO) {
-                ocupados++;
-            }
-        }
-        return ocupados;
-    }
 }
-

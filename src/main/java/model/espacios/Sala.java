@@ -19,6 +19,15 @@ public class Sala {
         this.listaAsientos = listaAsientos;
     }
 
+    public Sala(String codigo, String nombreONumero, int capacidad) {
+        this.codigo = codigo;
+        this.nombreONumero = nombreONumero;
+        this.capacidad = capacidad;
+        this.estado = EstadoSala.DISPONIBLE;
+        this.listaAsientos = new ArrayList<>();
+        generarAsientos();
+    }
+
     public String getCodigo() {
         return codigo;
     }
