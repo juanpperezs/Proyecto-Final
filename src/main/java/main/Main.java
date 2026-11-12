@@ -2,11 +2,11 @@ package main;
 
 import java.time.LocalDateTime;
 import java.util.Scanner;
-import model.core.Cinema;
-import model.core.Cliente;
-import model.core.Funcion;
-import model.core.Venta;
+
+import model.core.*;
 import model.enums.EstadoAsiento;
+import model.enums.EstadoFuncion;
+import model.enums.EstadoPelicula;
 import model.enums.EstadoVenta;
 import model.espacios.Asiento;
 
@@ -47,7 +47,7 @@ public class Main {
             switch (opcionSeleccionada) {
                 case 1:
                     System.out.println("\n ---- VENDER ENTRADA ----");
-                    System.out.print("\nIdentificación del cliente: ");
+                    System.out.println("\nIdentificación del cliente: ");
 
                     String idCliente = entradaTeclado.nextLine();
                     Cliente clienteVenta = null;
@@ -57,7 +57,7 @@ public class Main {
                             clienteVenta = cliente;
                         }
                     }
-                        System.out.print("Código de la función: ");
+                        System.out.println("Código de la función: ");
 
                         String codFuncion = entradaTeclado.nextLine();
                         Funcion funcionVenta = null;
@@ -75,12 +75,12 @@ public class Main {
                     System.out.println("La función no existe.");
 
                     }else {
-                        System.out.println("Película: " + funcionVenta.getPelicula().getNombrePelicula() + " | Sala: " + funcionVenta.getSala().getNombreONumero() + " | Hora: " + funcionVenta.getHora());
+                        System.out.print("Película: " + funcionVenta.getPelicula().getNombrePelicula() + " | Sala: " + funcionVenta.getSala().getNombreONumero() + " | Hora: " + funcionVenta.getHora());
                         System.out.println("Asientos disponibles:");
 
                         for (Asiento asiento : funcionVenta.getSala().getListaAsientos()) {
                             if (asiento.getEstado() == EstadoAsiento.DISPONIBLE) {
-                                System.out.println(asiento.getCodigoAsiento() + " ");
+                                System.out.print(asiento.getCodigoAsiento() + " ");
                             }
                         }
                         System.out.println(" ");
@@ -105,8 +105,8 @@ public class Main {
                         }
                     }
                     break;
-                case 2:
 
+                case 2:
                     System.out.println("----- CANCELAR VENTA -----");
 
                     System.out.print("Código de la venta: ");
@@ -116,16 +116,64 @@ public class Main {
 
                 //Faltan las excepciones
 
-                    if (ventaCancelada) {
+                    if(ventaCancelada) {
                         System.out.println("Venta " + codVentaCancelar + " cancelada. El asiento quedó disponible.");
                     }
                     break;
 
                 case 3:
+                    System.out.println("\n ---- CONSULTAR PELÍCULAS ----");
+
+                    boolean hayPeliculas = false;
+
+                    for (Pelicula pelicula : cinemaPrincipal.getListaPeliculas()) {
+                        if(pelicula.getEstado() == EstadoPelicula.DISPONIBLE) {
+                            hayPeliculas = true;
+                            System.out.println("\nNombre: " + pelicula.getNombrePelicula());
+                            System.out.println("Género: " + pelicula.getGenero());
+                            System.out.println("Duración. " + pelicula.getDuracionMinutos() + " minutos");
+                            System.out.println("Clasificación: " + pelicula.getClasificacion());
+                        }
+                    }
+
+                    if (!hayPeliculas) {
+                        System.out.println("No hay películas disponibles.");
+                    }
                     break;
+
                 case 4:
+                    System.out.println("\n ---- CONSULTAR FUNCIONES ----");
+
+                    boolean hayFunciones = false;
+
+                    for (Funcion funcion : cinemaPrincipal.getListaFunciones()) {
+                        if(funcion.getEstado() == EstadoFuncion.PROGRAMADA) {
+                            hayFunciones = true;
+
+                            System.out.println("\nCódigo: " + funcion.getCodigoFuncion());
+                            System.out.println("Película: " + funcion.getPelicula().getNombrePelicula());
+                            System.out.println("Sala: " + funcion.getSala().getNombreONumero());
+                            System.out.println("Fecha: " + funcion.getFecha());
+                            System.out.println("Hora: " + funcion.getHora());
+                            System.out.println("Valor de la entrada. $" + funcion.getValorBase());
+                            System.out.println("Asientos disponibles: " + funcion.getCantidadAsientosDisponibles());
+                        }
+                    }
+
+                    if(!hayFunciones) {
+                        System.out.println("No hay funciones programadas.");
+                    }
+
                     break;
+
                 case 5:
+                    System.out.println("\n ---- CONSULTAR DISPONIBILIDAD ----");
+
+                    System.out.print("Código de la función: ");
+                    String codFuncionDisponibilidad = entradaTeclado.nextLine();
+
+                    //Excepciones
+
                     break;
                 case 6:
                     break;
