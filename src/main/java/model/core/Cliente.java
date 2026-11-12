@@ -1,5 +1,7 @@
 package model.core;
 
+import model.enums.TipoCliente;
+
 public class Cliente {
 
         private String identificacion;
