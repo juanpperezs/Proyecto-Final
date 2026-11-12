@@ -6,6 +6,7 @@ import model.espacios.Asiento;
 import model.espacios.Sala;
 
 public class Funcion {
+
     private String codigo;
     private Pelicula pelicula;
     private Sala sala;
@@ -14,14 +15,14 @@ public class Funcion {
     private double valorBase;
     private EstadoFuncion estado;
 
-    public Funcion(String codigo, Pelicula pelicula, Sala sala, String fecha, String hora, double valorBase) {
+    public Funcion(String codigo, Pelicula pelicula, Sala sala, String fecha, String hora, double valorBase, EstadoFuncion estado) {
         this.codigo = codigo;
         this.pelicula = pelicula;
         this.sala = sala;
         this.fecha = fecha;
         this.hora = hora;
         this.valorBase = valorBase;
-        this.estado = EstadoFuncion.PROGRAMADA;
+        this.estado = estado;
     }
 
     public String getCodigo() {
@@ -80,8 +81,10 @@ public class Funcion {
         this.estado = estado;
     }
 
-    public int getCantidadAsientosDisponibles() {
+
+    public int cantidadAsientosDisponibles() {
         int disponibles = 0;
+
         for (Asiento asiento : sala.getListaAsientos()) {
             if (asiento.getEstado() == EstadoAsiento.DISPONIBLE) {
                 disponibles++;
@@ -90,8 +93,9 @@ public class Funcion {
         return disponibles;
     }
 
-    public int getCantidadAsientosOcupados() {
+    public int cantidadAsientosOcupados() {
         int ocupados = 0;
+
         for (Asiento asiento : sala.getListaAsientos()) {
             if (asiento.getEstado() == EstadoAsiento.OCUPADO) {
                 ocupados++;
@@ -99,17 +103,7 @@ public class Funcion {
         }
         return ocupados;
     }
-
-    @Override
-    public String toString() {
-        return "Funcion{" +
-                "codigo='" + codigo + '\'' +
-                ", pelicula=" + pelicula.getNombre() +
-                ", sala=" + sala.getNombreONumero() +
-                ", fecha='" + fecha + '\'' +
-                ", hora='" + hora + '\'' +
-                ", valorBase=" + valorBase +
-                ", estado=" + estado +
-                '}';
-    }
 }
+
+
+
