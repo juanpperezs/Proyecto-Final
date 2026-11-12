@@ -56,4 +56,8 @@ public class Asiento {
                 ", estado=" + estado +
                 '}';
     }
+
+    public void liberarAsiento() {
+        this.estado = EstadoAsiento.DISPONIBLE;
+    }
 }

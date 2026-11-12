@@ -1,10 +1,11 @@
 package model.core;
 
+import model.enums.EstadoAsiento;
 import model.enums.EstadoFuncion;
+import model.espacios.Asiento;
 import model.espacios.Sala;
 
 public class Funcion {
-
     private String codigo;
     private Pelicula pelicula;
     private Sala sala;
@@ -13,14 +14,14 @@ public class Funcion {
     private double valorBase;
     private EstadoFuncion estado;
 
-    public Funcion(String codigo, Pelicula pelicula, Sala sala, String fecha, String hora, double valorBase, EstadoFuncion estado) {
+    public Funcion(String codigo, Pelicula pelicula, Sala sala, String fecha, String hora, double valorBase) {
         this.codigo = codigo;
         this.pelicula = pelicula;
         this.sala = sala;
         this.fecha = fecha;
         this.hora = hora;
         this.valorBase = valorBase;
-        this.estado = estado;
+        this.estado = EstadoFuncion.PROGRAMADA;
     }
 
     public String getCodigo() {
@@ -79,4 +80,36 @@ public class Funcion {
         this.estado = estado;
     }
 
+    public int getCantidadAsientosDisponibles() {
+        int disponibles = 0;
+        for (Asiento asiento : sala.getListaAsientos()) {
+            if (asiento.getEstado() == EstadoAsiento.DISPONIBLE) {
+                disponibles++;
+            }
+        }
+        return disponibles;
+    }
+
+    public int getCantidadAsientosOcupados() {
+        int ocupados = 0;
+        for (Asiento asiento : sala.getListaAsientos()) {
+            if (asiento.getEstado() == EstadoAsiento.OCUPADO) {
+                ocupados++;
+            }
+        }
+        return ocupados;
+    }
+
+    @Override
+    public String toString() {
+        return "Funcion{" +
+                "codigo='" + codigo + '\'' +
+                ", pelicula=" + pelicula.getNombre() +
+                ", sala=" + sala.getNombreONumero() +
+                ", fecha='" + fecha + '\'' +
+                ", hora='" + hora + '\'' +
+                ", valorBase=" + valorBase +
+                ", estado=" + estado +
+                '}';
+    }
 }
