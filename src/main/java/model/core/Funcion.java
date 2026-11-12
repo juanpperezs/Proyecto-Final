@@ -1,5 +1,8 @@
 package model.core;
 
+import model.enums.EstadoFuncion;
+import model.espacios.Sala;
+
 public class Funcion {
 
     private String codigo;
