@@ -136,10 +136,10 @@ public class Cinema implements ICinema{
                 return valorBase*0.8;
 
             case NINO:
-                return valorBase*0.66;
+                return valorBase*0.70;
 
             case ADULTO_MAYOR:
-                return valorBase*0.73;
+                return valorBase*0.75;
 
             case GENERAL:
             default:
@@ -159,7 +159,7 @@ public class Cinema implements ICinema{
             throw new IllegalArgumentException("Cliente con identificacion "+identificacionCliente+" no encontrado.");
         }
 
-        Asiento asiento= funcion.getSala().buscarAsientoPorCodigo(codigoAsiento);
+        Asiento asiento= funcion.buscarAsientoPorCodigo(codigoAsiento);
         if (asiento==null){
             throw new AsientoOcupadoException("El asiento "+codigoAsiento+" no existe.");
         }
@@ -245,8 +245,8 @@ public class Cinema implements ICinema{
             throw new FuncionInexistenteException("Función no encontrada: " + codigoFuncion);
         }
         Sala sala = funcion.getSala();
-        int ocupados = sala.contarAsientosOcupados();
-        int disponibles = sala.contarAsientosDisponibles();
+        int ocupados = funcion.getCantidadAsientosOcupados();
+        int disponibles = funcion.getCantidadAsientosDisponibles();
         int capacidad = sala.getCapacidad();
         double porcentaje = 0.0;
         if (capacidad > 0) {

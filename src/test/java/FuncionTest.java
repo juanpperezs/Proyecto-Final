@@ -56,8 +56,8 @@ public class FuncionTest {
         assertEquals(3, funcionPrueba.getCantidadAsientosDisponibles());
         assertEquals(0, funcionPrueba.getCantidadAsientosOcupados());
 
-        primerAsiento.ocuparAsiento();
-        segundoAsiento.ocuparAsiento();
+        funcionPrueba.buscarAsientoPorCodigo(primerAsiento.getCodigoAsiento()).ocuparAsiento();
+        funcionPrueba.buscarAsientoPorCodigo(segundoAsiento.getCodigoAsiento()).ocuparAsiento();
 
         assertEquals(1, funcionPrueba.getCantidadAsientosDisponibles());
         assertEquals(2, funcionPrueba.getCantidadAsientosOcupados());

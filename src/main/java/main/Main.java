@@ -75,17 +75,21 @@ public class Main {
         cinemaPrincipal.registrarCliente(c2);
         cinemaPrincipal.registrarCliente(c3);
 
-        Venta v1 = new Venta("V-1", c1, f1, a1, LocalDateTime.now(), cinemaPrincipal.calcularValorEntrada(f1, c1.getTipoCliente()), EstadoVenta.ACTIVA);
-        a1.ocuparAsiento();
+        Asiento a1F1 = f1.buscarAsientoPorCodigo("A1");
+        Venta v1 = new Venta("V-1", c1, f1, a1F1, LocalDateTime.now(), cinemaPrincipal.calcularValorEntrada(f1, c1.getTipoCliente()), EstadoVenta.ACTIVA);
+        a1F1.ocuparAsiento();
 
-        Venta v2 = new Venta("V-2", c2, f1, a2, LocalDateTime.now(), cinemaPrincipal.calcularValorEntrada(f1, c2.getTipoCliente()), EstadoVenta.ACTIVA);
-        a2.ocuparAsiento();
+        Asiento a2F1 = f1.buscarAsientoPorCodigo("A2");
+        Venta v2 = new Venta("V-2", c2, f1, a2F1, LocalDateTime.now(), cinemaPrincipal.calcularValorEntrada(f1, c2.getTipoCliente()), EstadoVenta.ACTIVA);
+        a2F1.ocuparAsiento();
 
-        Venta v3 = new Venta("V-3", c3, f2, b1, LocalDateTime.now(), cinemaPrincipal.calcularValorEntrada(f2, c3.getTipoCliente()), EstadoVenta.ACTIVA);
-        b1.ocuparAsiento();
+        Asiento b1F2 = f2.buscarAsientoPorCodigo("B1");
+        Venta v3 = new Venta("V-3", c3, f2, b1F2, LocalDateTime.now(), cinemaPrincipal.calcularValorEntrada(f2, c3.getTipoCliente()), EstadoVenta.ACTIVA);
+        b1F2.ocuparAsiento();
 
-        Venta v4 = new Venta("V-4", c1, f3, s2A1, LocalDateTime.now(), cinemaPrincipal.calcularValorEntrada(f3, c1.getTipoCliente()), EstadoVenta.ACTIVA);
-        s2A1.ocuparAsiento();
+        Asiento a1F3 = f3.buscarAsientoPorCodigo("A1");
+        Venta v4 = new Venta("V-4", c1, f3, a1F3, LocalDateTime.now(), cinemaPrincipal.calcularValorEntrada(f3, c1.getTipoCliente()), EstadoVenta.ACTIVA);
+        a1F3.ocuparAsiento();
 
         cinemaPrincipal.getListaVentas().add(v1);
         cinemaPrincipal.getListaVentas().add(v2);
@@ -187,7 +191,7 @@ public class Main {
                     } else if (funcionVenta.getEstado() != EstadoFuncion.PROGRAMADA) {
                         System.out.println("La función no está disponible.");
 
-                    } else if (funcionVenta.getSala().contarAsientosDisponibles() == 0) {
+                    } else if (funcionVenta.getCantidadAsientosDisponibles() == 0) {
                         System.out.println("No hay asientos disponibles para esta función.");
 
                     } else {
@@ -196,7 +200,7 @@ public class Main {
                                 + " | Hora: " + funcionVenta.getHora());
                         System.out.println("Asientos disponibles:");
 
-                        for (Asiento asiento : funcionVenta.getSala().getListaAsientos()) {
+                        for (Asiento asiento : funcionVenta.getListaAsientos()) {
                             if (asiento.getEstado() == EstadoAsiento.DISPONIBLE) {
                                 System.out.print(asiento.getCodigoAsiento() + " ");
                             }
@@ -314,11 +318,11 @@ public class Main {
                         System.out.println("\nPelícula: " + funcionDisponibilidad.getPelicula().getNombrePelicula());
                         System.out.println("Sala: " + salaFuncion.getNombreONumero());
                         System.out.println("Total de asientos: " + salaFuncion.getCapacidad());
-                        System.out.println("Asientos disponibles: " + salaFuncion.contarAsientosDisponibles());
-                        System.out.println("Asientos ocupados: " + salaFuncion.contarAsientosOcupados());
+                        System.out.println("Asientos disponibles: " + funcionDisponibilidad.getCantidadAsientosDisponibles());
+                        System.out.println("Asientos ocupados: " + funcionDisponibilidad.getCantidadAsientosOcupados());
                         System.out.println("\nEstado individual de los asientos:");
 
-                        for (Asiento asiento : salaFuncion.getListaAsientos()) {
+                        for (Asiento asiento : funcionDisponibilidad.getListaAsientos()) {
                             String estadoAsientoTexto = "Disponible";
                             if (asiento.getEstado() == EstadoAsiento.OCUPADO) {
                                 estadoAsientoTexto = "Ocupado";
@@ -726,9 +730,9 @@ public class Main {
                                     + cinemaPrincipal.calcularValorEntrada(funcionConsultar, TipoCliente.GENERAL));
                             System.out.println("- ESTUDIANTE (20% descuento): $"
                                     + cinemaPrincipal.calcularValorEntrada(funcionConsultar, TipoCliente.ESTUDIANTE));
-                            System.out.println("- NINO (34% descuento): $"
+                            System.out.println("- NINO (30% descuento): $"
                                     + cinemaPrincipal.calcularValorEntrada(funcionConsultar, TipoCliente.NINO));
-                            System.out.println("- ADULTO_MAYOR (27% descuento): $"
+                            System.out.println("- ADULTO_MAYOR (25% descuento): $"
                                     + cinemaPrincipal.calcularValorEntrada(funcionConsultar, TipoCliente.ADULTO_MAYOR));
                         }
 

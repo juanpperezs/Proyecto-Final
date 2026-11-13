@@ -230,8 +230,8 @@ public class CinemaTest {
 
         assertEquals(10000.0, valorGeneral, 0.001);
         assertEquals(8000.0, valorEstudiante, 0.001);
-        assertEquals(6600.0, valorNino, 0.001);
-        assertEquals(7300.0, valorAdultoMayor, 0.001);
+        assertEquals(7000.0, valorNino, 0.001);
+        assertEquals(7500.0, valorAdultoMayor, 0.001);
     }
 
     @Test
@@ -242,7 +242,7 @@ public class CinemaTest {
         assertEquals("VENTA-01", ventaRegistrada.getCodigoVenta());
         assertEquals(8000.0, ventaRegistrada.getValorPagado(), 0.001);
         assertEquals(EstadoVenta.ACTIVA, ventaRegistrada.getEstadoVenta());
-        assertEquals(EstadoAsiento.OCUPADO, primerAsiento.getEstado());
+        assertEquals(EstadoAsiento.OCUPADO, ventaRegistrada.getAsiento().getEstado());
 
         assertThrows(FuncionInexistenteException.class, () -> {
             cinemaPrincipal.venderEntrada("VENTA-02", "1001", "FUNC-INEXISTENTE", "A2");

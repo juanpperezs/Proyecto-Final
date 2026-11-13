@@ -7,6 +7,8 @@ import model.espacios.Sala;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Funcion {
 
@@ -17,6 +19,7 @@ public class Funcion {
     private LocalTime hora;
     private double valorBase;
     private EstadoFuncion estado;
+    private List<Asiento> listaAsientos;
 
     public Funcion(String codigoFuncion, Pelicula pelicula, Sala sala, LocalDate fecha, LocalTime hora, double valorBase, EstadoFuncion estado) {
         this.codigoFuncion = codigoFuncion;
@@ -26,6 +29,12 @@ public class Funcion {
         this.hora = hora;
         this.valorBase = valorBase;
         this.estado = estado;
+        this.listaAsientos = new ArrayList<>();
+        if (sala != null && sala.getListaAsientos() != null) {
+            for (Asiento asientoSala : sala.getListaAsientos()) {
+                this.listaAsientos.add(new Asiento(asientoSala.getCodigoAsiento(), asientoSala.getFila(), asientoSala.getNumero()));
+            }
+        }
     }
 
     public String getCodigoFuncion() {
@@ -50,6 +59,12 @@ public class Funcion {
 
     public void setSala(Sala sala) {
         this.sala = sala;
+        this.listaAsientos = new ArrayList<>();
+        if (sala != null && sala.getListaAsientos() != null) {
+            for (Asiento asientoSala : sala.getListaAsientos()) {
+                this.listaAsientos.add(new Asiento(asientoSala.getCodigoAsiento(), asientoSala.getFila(), asientoSala.getNumero()));
+            }
+        }
     }
 
     public LocalDate getFecha() {
@@ -84,9 +99,22 @@ public class Funcion {
         this.estado = estado;
     }
 
+    public List<Asiento> getListaAsientos() {
+        return listaAsientos;
+    }
+
+    public Asiento buscarAsientoPorCodigo(String codigoAsiento) {
+        for (Asiento asientoActual : listaAsientos) {
+            if (asientoActual.getCodigoAsiento().equalsIgnoreCase(codigoAsiento)) {
+                return asientoActual;
+            }
+        }
+        return null;
+    }
+
     public int getCantidadAsientosDisponibles() {
         int cantidadAsientosDisponibles = 0;
-        for (Asiento asientoActual : sala.getListaAsientos()) {
+        for (Asiento asientoActual : listaAsientos) {
             if (asientoActual.getEstado() == EstadoAsiento.DISPONIBLE) {
                 cantidadAsientosDisponibles++;
             }
@@ -96,7 +124,7 @@ public class Funcion {
 
     public int getCantidadAsientosOcupados() {
         int cantidadAsientosOcupados = 0;
-        for (Asiento asientoActual : sala.getListaAsientos()) {
+        for (Asiento asientoActual : listaAsientos) {
             if (asientoActual.getEstado() == EstadoAsiento.OCUPADO) {
                 cantidadAsientosOcupados++;
             }
