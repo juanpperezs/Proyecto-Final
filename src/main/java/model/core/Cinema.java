@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 
-public class Cinema {
+public class Cinema implements ICinema{
     private String nombre;
     private List<Pelicula> listaPeliculas;
     private List<Sala> listaSalas;
